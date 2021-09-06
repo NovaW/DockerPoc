@@ -15,10 +15,23 @@ namespace DockerContainerLauncher
                 new Uri("unix:///var/run/docker.sock"))
                 .CreateClient();
 
-            IList<ContainerListResponse> containers = await client.Containers.ListContainersAsync(
-                new ContainersListParameters(){
-                    Limit = 10,
-                });
+            // IList<ContainerListResponse> containers = await client.Containers.ListContainersAsync(
+            //     new ContainersListParameters(){
+            //         Limit = 10,
+            //     });
+
+            // foreach(var c in containers)
+            // {
+            //     foreach(var n in c.Names)
+            //     {
+            //         Console.WriteLine(n);
+            //     }
+            // }
+
+            await client.Containers.StartContainerAsync(
+                "0e2afbcb3d42",
+                new ContainerStartParameters()
+                );
         }
     }
 }
